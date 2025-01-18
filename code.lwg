@@ -1,11 +1,20 @@
 @This is an example file
 @ comment
 @ Start KeyWord start a program
+
 START
+
 @int declear an integer variable
 INT num
+
 @ Write keywork to write text
 WRITE "WORD\n"
+
 @ Read keyword to read value
-READ "Enter A Number ?" ,num;
-ENDS
+
+READ "Enter A Number ?" , num;
+INT SUM
+SUM = num + num ;
+@ End Keyword end the program
+WRITE num
+END

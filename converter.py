@@ -9,9 +9,13 @@ def main():
     x = 0
     with open(file_name,"r") as codeFile:
         for line in codeFile:
+            # print(type(line))
+            # print(line)
             x=x+1
             # print(line)
-            if "START" in line:
+            if line == "\n":
+                continue
+            elif "START" in line:
                 compiled.write("#include<iostream>\n")
                 compiled.write("int main(){\n")
             elif "INT" in line[0:3]:
@@ -33,11 +37,13 @@ def main():
                 compiled.write(f"\tstd::cin>>{line[x+1:]}")
             elif line[0] == '@':
                 continue
+            elif any(op in line for op in ("+", "-", "/", "*")):
+                compiled.write(f"\t{line}")
             elif "END" in line[:3]:
                 compiled.write("\treturn 0;\n")
                 compiled.write("}")
-            else:
-                print(f"Syntax Error at line {x}")
+            # else:
+            #     print(f"Syntax Error at line {x}")
     # os.system(f" gcc {run} -o {run[:4]}")
     # os.system(f"./{run[:4]}")
 if __name__ == '__main__':
