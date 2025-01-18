@@ -14,11 +14,11 @@ def main():
             if "START" in line:
                 compiled.write("#include<iostream>\n")
                 compiled.write("int main(){\n")
-            if "INT" in line[0:3]:
+            elif "INT" in line[0:3]:
                 compiled.write(f"\tint {3:};\n")
-            if "STR" in line[0:3]:
+            elif "STR" in line[0:3]:
                 compiled.write(f"\tstd::string {3:};\n")
-            if "WRITE" in line:
+            elif "WRITE" in line:
                 if line[len(line)-1] == ';':
                     compiled.write(f"\tstd::cout<<{line[6:len(line)-1]}<<std::endl;\n")
                 else:
