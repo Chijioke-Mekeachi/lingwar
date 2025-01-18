@@ -17,4 +17,4 @@ INT SUM
 SUM = num + num ;
 @ End Keyword end the program
 WRITE num
-END
+ENDS
