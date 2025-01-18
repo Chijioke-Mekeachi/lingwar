@@ -15,6 +15,8 @@ WRITE "WORD\n"
 READ "Enter A Number ?" , num;
 INT SUM
 SUM = num + num ;
+INT SUB
+SUN = num - SUM ;
 @ End Keyword end the program
 WRITE num
 ENDS

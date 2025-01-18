@@ -6,6 +6,8 @@ int main(){
 	std::cin>> num;
 	int 3;
 	SUM = num + num ;
+	int 3;
+	SUN = num - SUM ;
 	std::cout<<num;
 	return 0;
 }

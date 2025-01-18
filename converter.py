@@ -19,7 +19,7 @@ def main():
                 compiled.write("#include<iostream>\n")
                 compiled.write("int main(){\n")
             elif "INT" in line[0:3]:
-                compiled.write(f"\tint {3:};\n")
+                compiled.write(f"\tint {line[3:]};\n")
             elif "STR" in line[0:3]:
                 compiled.write(f"\tstd::string {3:};\n")
             elif "WRITE" in line:
