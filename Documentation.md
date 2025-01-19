@@ -1,4 +1,4 @@
-Lingwar Translated Language
+Lingwar Translated Language 🐱‍👤
 
 How to run :
 python converter.py [lingwar code filename] 
@@ -29,6 +29,25 @@ The End keyword is used at the end of the program
  either plane text or text stored in a variable
 
 
+Varable :
+[DataType] [VariableName]
+
+
+@@@@@ DataTypes in LingWar🐱‍👤
+INT :
+INT keyword is used to define a interger variable
+Syntax: INT [VariableName]
+
+STR 
+STR keyword is used to define a string variable
+Syntax: STR [VariableName]
+
+FLOAT 
+FLOAT keyword is used to define a floating point variable
+Syntax: FLOAT [VariableName]
+
+POINTER VARIABEL
+Adding a * at the end of the varable type turns the variable to a pointer 
 
 Collect input value:
 READ [Text to be display when collecting text], [variable]
