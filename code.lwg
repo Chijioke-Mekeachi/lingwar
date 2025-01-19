@@ -19,4 +19,6 @@ INT SUB
 SUN = num - SUM ;
 @ End Keyword end the program
 WRITE num
+
+ARYINT name,23
 ENDS
