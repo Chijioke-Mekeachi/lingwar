@@ -55,3 +55,8 @@ READ [Text to be display when collecting text], [variable]
 The Read keyword is used for reading data from user,it collect only two parameter
 Text and Variable
 variable  must have been created before this kwyword is called
+
+FOR LOOP
+FOR [variableName] ([Start interger],[Stop Integer])
+commands or statements
+ENDFOR

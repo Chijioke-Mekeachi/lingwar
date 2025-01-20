@@ -168,17 +168,25 @@ def main():
                     if line[r+3] != " ":
                         break 
 
+
                 for g in range(len(line) -1):
                     if line[g] == "(":
                         break
+
+                
                 for x in range(len(line) - 1):
                     if line[x] == ",":
                         break
+
+                
                 for k in range(len(line) - 1):
                     if line[k] == ")":
                         break
+            
                 compiled.write(f"\tfor(int {line[r+3:g-1]} = {line[g+1:x]} ; {line[r+3:g-1]} < {line[x+1:k]} ;{line[r+3:g-1]}++)\n")
                 compiled.write("\t{\n\t") 
+
+            # End froloop statement 
             elif "ENDFOR" in line[0:7]:
                 compiled.write("\t}\n")  
 
