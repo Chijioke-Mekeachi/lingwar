@@ -1,3 +1,4 @@
+// This Is the OutPut Code From The Lingwar Program
 #include<iostream>
 int main(){
 	int num1;

@@ -1,0 +1,8 @@
+#ADD "I/O"
+START
+STR name
+WRITE "eggs"
+READ "Enter Your Name ?", name;
+WRITE name
+END
+@ comment

@@ -1,12 +1,36 @@
+# Program to translate Lingwar Code to Cpp Program
+# Started Date: 1/17:2025
+# End Date: Working
+# Author : Chijioke Mekelachi
+# School : Ignatus Ajuru University
+
+
+
 import sys
 import os
 
+
+# Main Program
+
 def main():
+
+
     # print(sys.argv[1])
     file_name = sys.argv[1]
+
+    # File Name Creation
     run = (f"{file_name[:len(file_name)-4]}.cpp")
+
+    # Writing to the New created File
+    # The Cpp file
     compiled = open(f"{file_name[:len(file_name)-4]}.cpp",'w')
+
+
+    # For Line counting sake
     x = 0
+
+    # Reading line by line
+    # Line by Line convertion To  C++
     with open(file_name,"r") as codeFile:
         for line in codeFile:
             # print(type(line))
@@ -22,7 +46,7 @@ def main():
             elif line == "\n":
                 continue
             
-            elif "#ADD" in line[0:4]:
+            elif "#ADD" in line[0:5]:
                 if "I/O" in line[4:10]:
                     compiled.write("#include<iostream>\n")
                 elif "MATH" in line[4:12]:
@@ -30,7 +54,7 @@ def main():
                 
             
             # Implimentation of the Start Key Word
-            elif "START" in line.upper():
+            elif "START" in line[0:7]:
                 compiled.write("int main(){\n")
 
             #inplimatation of int datatype 
@@ -39,7 +63,7 @@ def main():
             
             #inplimatation of STRING datatype 
             elif "STR" in line[0:3]:
-                compiled.write(f"\tstd::string {3:};\n")
+                compiled.write(f"\tstd::string {line[3:len(line)-1]};\n")
             
             #inplimatation of FLOAT datatype 
 
@@ -119,6 +143,9 @@ def main():
                             break
                     compiled.write(f"\tchar {line[x+8:g]}[{line[g+1:len(line)-1]}];\n")
                 
+                
+                # Array Of String 
+
                 if "ARYSTR" in line[0:6]:
                     # Integer Array
                     for x in range(len(line)-1):
@@ -130,11 +157,47 @@ def main():
                     compiled.write(f"\tstd::string {line[x+7:g]}[{line[g+1:len(line)-1]}];\n")
             
 
+
+
+            #FOR [NAME OF VARIABLE] ([BEGIN],[END])
+            # STATEMENT
+            #ENDFOR
+            ####################################### For Loop ##############################################
+            elif "FOR" in line[0:3]:
+                for r in range(len(line) - 1):
+                    if line[r+3] != " ":
+                        break 
+
+                for g in range(len(line) -1):
+                    if line[g] == "(":
+                        break
+                for x in range(len(line) - 1):
+                    if line[x] == ",":
+                        break
+                for k in range(len(line) - 1):
+                    if line[k] == ")":
+                        break
+                compiled.write(f"\tfor(int {line[r+3:g-1]} = {line[g+1:x]} ; {line[r+3:g-1]} < {line[x+1:k]} ;{line[r+3:g-1]}++)\n")
+                compiled.write("\t{\n\t") 
+            elif "ENDFOR" in line[0:7]:
+                compiled.write("\t}\n")  
+
+            ################################### End for loop ###############################
+
+
+
+
+            # Aritimatic Operation s
+
             elif any(op in line for op in ("+", "-", "/", "*","=")):
                 compiled.write(f"\t{line}")
+
+
+            # Implimetation of End startement 
             elif "END" in line[:3]:
                 compiled.write("\treturn 0;\n")
-                compiled.write("}")
+                compiled.write("}\n")
+                compiled.write("// This Is the OutPut Code From The Lingwar Program")
             # else:
             #     print(f"Syntax Error at line {x}")
     # os.system(f" gcc {run} -o {run[:4]}")
