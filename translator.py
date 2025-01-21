@@ -183,8 +183,22 @@ def main():
 
             ################################### End for loop ###############################
 
+            ################################### Start If StateMent ###########################
+            elif "IF" in line[0:3]:
+                for x in range(len(line) - 1):
+                    if line[x] == "(":
+                        break 
+                for g in range(len(line)-1):
+                    if line[g] == ")":
+                        break
+                compiled.write(f"\tif {line[x:g+1]}\n")
+                compiled.write("\t{\n")
             # Aritimatic Operation s
 
+            elif "ENDIF" in line[0:6]:
+                compiled.write("\t}\n")
+
+            ################### End of If Statement ###################
             elif any(op in line for op in ("+", "-", "/", "*","=")):
                 compiled.write(f"\t{line}")
 

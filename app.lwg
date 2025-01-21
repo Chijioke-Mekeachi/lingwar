@@ -4,6 +4,9 @@ WRITE "hello"
 INT num
 READ "Enter a Number ?",num;
 WRITE num
+IF (num == 9)
+num = 12;
+ENDIF
 FOR G (0,20)
 WRITE G
 WRITE "number is\n"
