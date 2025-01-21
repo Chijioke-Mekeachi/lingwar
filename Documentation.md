@@ -60,3 +60,20 @@ FOR LOOP
 FOR [variableName] ([Start interger],[Stop Integer])
 commands or statements
 ENDFOR
+
+IF STATEMENT
+SYNTAX: 
+IF ([value] [condition] [value])
+[condition]
+ENDIF
+
+[VALUE] the value can be a variable a string or an interger 
+[condition] conditions can be
+[Name]                  ""      [sign_to_use] 
+
+equal to                ||          ==
+not Equal to            ||          !=
+Greater Than            ||          >
+Less Than               ||          <
+Less Than oo Equalto    ||          <=
+Greater Than or Equalto ||          >=
