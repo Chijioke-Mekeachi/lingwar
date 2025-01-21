@@ -2,19 +2,14 @@
 # Started Date: 1/17:2025
 # End Date: Working
 # Author : Chijioke Mekelachi
-# School : Ignatus Ajuru University
-
-
+# School : Ignatus Ajuru University 
 
 import sys
 import os
 
-
 # Main Program
 
 def main():
-
-
     # print(sys.argv[1])
     file_name = sys.argv[1]
 
@@ -24,7 +19,6 @@ def main():
     # Writing to the New created File
     # The Cpp file
     compiled = open(f"{file_name[:len(file_name)-4]}.cpp",'w')
-
 
     # For Line counting sake
     x = 0
@@ -52,7 +46,6 @@ def main():
                 elif "MATH" in line[4:12]:
                     compiled.write("#include<cmath>\n")
                 
-            
             # Implimentation of the Start Key Word
             elif "START" in line[0:7]:
                 compiled.write("int main(){\n")
@@ -157,8 +150,6 @@ def main():
                     compiled.write(f"\tstd::string {line[x+7:g]}[{line[g+1:len(line)-1]}];\n")
             
 
-
-
             #FOR [NAME OF VARIABLE] ([BEGIN],[END])
             # STATEMENT
             #ENDFOR
@@ -184,16 +175,13 @@ def main():
                         break
             
                 compiled.write(f"\tfor(int {line[r+3:g-1]} = {line[g+1:x]} ; {line[r+3:g-1]} < {line[x+1:k]} ;{line[r+3:g-1]}++)\n")
-                compiled.write("\t{\n\t") 
+                compiled.write("\t{\n") 
 
             # End froloop statement 
             elif "ENDFOR" in line[0:7]:
                 compiled.write("\t}\n")  
 
             ################################### End for loop ###############################
-
-
-
 
             # Aritimatic Operation s
 

@@ -1,8 +1,11 @@
 #ADD "I/O"
 START
-STR name
-WRITE "eggs"
-READ "Enter Your Name ?", name;
-WRITE name
+WRITE "hello"
+INT num
+READ "Enter a Number ?",num;
+WRITE num
+FOR G (0,20)
+WRITE G
+WRITE "number is\n"
+ENDFOR
 END
-@ comment
