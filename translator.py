@@ -199,6 +199,26 @@ def main():
                 compiled.write("\t}\n")
 
             ################### End of If Statement ###################
+
+
+            ######################### ELIF STATEMENT ####################
+            elif "ELSEIF" in line[0:8]:
+                for x in range(len(line) - 1):
+                    if line[x] == "(":
+                        break 
+                for g in range(len(line)-1):
+                    if line[g] == ")":
+                        break
+                compiled.write("\t}")
+                compiled.write(f"else if {line[x:g+1]}\n")
+                compiled.write("\t{\n")
+
+            ######################## END ELIF STATEMENT ################
+            # Aritimatic Operation s
+
+            elif "ENDIF" in line[0:6]:
+                compiled.write("\t}\n")
+
             elif any(op in line for op in ("+", "-", "/", "*","=")):
                 compiled.write(f"\t{line}")
 

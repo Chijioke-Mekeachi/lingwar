@@ -8,6 +8,9 @@ int main(){
 	if (num == 9)
 	{
 	num = 12;
+	}else if (num > 0)
+	{
+	std::cout<<num;
 	}
 	for(int G = 0 ; G < 20 ;G++)
 	{

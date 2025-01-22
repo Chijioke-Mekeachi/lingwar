@@ -6,6 +6,8 @@ READ "Enter a Number ?",num;
 WRITE num
 IF (num == 9)
 num = 12;
+ELSEIF (num > 0)
+WRITE num
 ENDIF
 FOR G (0,20)
 WRITE G
