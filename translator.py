@@ -7,6 +7,47 @@
 import sys
 import os
 
+
+
+def add_parameter_to_function(line):
+    for x in range(len(line)-1):
+        for g in range(len(line) - 1):
+            if line[g] == "(":
+                for a in range(len(line) - 1):
+                    if [g+a] != " ":
+                        print(line[g+a:4])
+                        break 
+                for b in range(len(line) - 1):
+                    if [g+b] == " ":
+                        break
+                for c in range(len(line) - 1):
+                    if [g+c] != " ":
+                        break 
+                for d in range(len(line) - 1):
+                    if [g+d] == " ":
+                        break
+                if "INT" in line[g+a : 4]:
+                    function_parameter_type = "int "
+                    print(function_parameter_type)
+                elif "STR" in line[g+a : 4]:
+                    function_parameter_type = "std::string "
+                    print(function_parameter_type)
+                elif "FLOAT" in line[g+a : 7]:
+                    function_parameter_type = "int"
+                    print(function_parameter_type)
+                else:
+                    print("[TYPE ERROR]")
+                    print("No such data Type")
+                    print("Function parameter")
+                # print(function_parameter_name)
+                # print(command)
+                # match(function_parameter_type):
+                #     case "INT":
+                #         command = command+"int"+ " " +name
+                #         print(command)
+        # print(command)
+
+
 # Main Program
 
 def main():
@@ -14,6 +55,7 @@ def main():
     file_name = sys.argv[1]
 
     # File Name Creation
+    global run 
     run = (f"{file_name[:len(file_name)-4]}.cpp")
 
     # Writing to the New created File
@@ -47,24 +89,24 @@ def main():
                     compiled.write("#include<cmath>\n")
                 
             # Implimentation of the Start Key Word
-            elif "START" in line[0:7]:
+            elif "START" in line[0:7].upper():
                 compiled.write("int main(){\n")
 
             #inplimatation of int datatype 
-            elif "INT" in line[0:3]:
+            elif "int" in line[0:3]:
                 compiled.write(f"\tint{line[3:len(line)-1]};\n")
             
             #inplimatation of STRING datatype 
-            elif "STR" in line[0:3]:
+            elif "str" in line[0:3].upper():
                 compiled.write(f"\tstd::string {line[3:len(line)-1]};\n")
             
             #inplimatation of FLOAT datatype 
 
-            elif "FLOAT" in line[0:6]:
+            elif "float" in line[0:6].upper():
                 compiled.write(f"\tdouble {line[6:len(line)-1]};\n")
             
             # Implimentation of Char datatype
-            elif "CHAR" in line[0:4]:
+            elif "char" in line[0:4].upper():
                 compiled.write(f"\tchar {line[4:len(line)-1]};\n")
 
 
@@ -113,7 +155,8 @@ def main():
                     for g in range(len(line)-1):
                         if line[g] == ",":
                             break
-                    compiled.write(f"\tint {line[x+7:g]}[{line[g+1:len(line)-1]}];\n")
+                    # compiled.write(f"\tint {line[x+7:g]}[{line[g+1:len(line)-1]}];\n")
+                    compiled.write(f"\tint {line[6:]}")
                 # Floating point array
                 elif "ARYFLOAT" in line[0:8]:
                     # Integer Array
@@ -151,8 +194,8 @@ def main():
             
 
             #FOR [NAME OF VARIABLE] ([BEGIN],[END])
-            # STATEMENT
-            #ENDFOR
+            #   STATEMENT
+            #   ENDFOR
             ####################################### For Loop ##############################################
             elif "FOR" in line[0:3]:
                 for r in range(len(line) - 1):
@@ -182,6 +225,45 @@ def main():
                 compiled.write("\t}\n")  
 
             ################################### End for loop ###############################
+            ########################## CAlling Functions #################################
+            elif "CALLFUNC" in line[0:9]:
+                o = 0
+                for x in range(len(line) - 1):
+                    if line[x] == "(":
+                        break 
+                    
+                for g in range(len(line)-1):
+                    if line[g] == ")":
+                        break
+
+                for a in range(len(line)-1):
+                    if line[a] == '[':
+                        break
+                
+                for b in range(len(line) - 1):
+                    if line[b] == "]":
+                        break
+                for c in range(len(line) - 2):
+                    if line[c] == "=":
+                        break 
+                for d in range(len(line) - 1):
+                    if line[d] == ">":
+                        o = 10
+                        break
+                
+                match(o):
+                    case 10:
+                        name = line[a+1:b]
+                        compiled.write(f"\t{line[c+2:len(line)-1]} = {name}({line[x+1:g]});\n")
+                    case 0:
+                        name = line[a+1:b]
+                        compiled.write(f"\t{name}({line[x+1:g]});\n")
+                    
+                    case _:
+                        raise SyntaxError ("Invalis syntax")
+            
+
+            ################################# Edn calling function #########################3
 
             ################################### Start If StateMent ###########################
             elif "IF" in line[0:3]:
@@ -212,16 +294,83 @@ def main():
                 compiled.write("\t}")
                 compiled.write(f"else if {line[x:g+1]}\n")
                 compiled.write("\t{\n")
+            elif "ELSE" in line.strip():
+                compiled.write("\t}else{")
+            
+            elif "ENDIF" in line[0:6]:
+                compiled.write("\t}\n")
 
             ######################## END ELIF STATEMENT ################
             # Aritimatic Operation s
 
-            elif "ENDIF" in line[0:6]:
-                compiled.write("\t}\n")
 
             elif any(op in line for op in ("+", "-", "/", "*","=")):
                 compiled.write(f"\t{line}")
+            
+            ########################### FUNCTION S AND FUNCTION TYPE #############################
+            # Syntax FUNC [TYPE] NAME ([Type] [name])
 
+
+                        
+                    
+            elif "FUNC" in line[0:5]:
+                for x in range(len(line) - 1):
+                    if line[x] == "(":
+                        break 
+                    
+                for g in range(len(line)-1):
+                    if line[g] == ")":
+                        break
+
+                for a in range(len(line)-1):
+                    if line[a] == '[':
+                        break
+                
+                for b in range(len(line) - 1):
+                    if line[b] == "]":
+                        break
+                
+                type_data = line[a+1:b]
+                # print(type_data)
+                name = line[b+1:x]
+                # print(name)
+
+                match (type_data):
+                    case "int":
+                        compiled.write(f"\nint {name} ({line[x+1:g]})\n")
+                        compiled.write("{\n")
+                    case "float":
+                        compiled.write(f"float {name} ({line[x+1:g]})\n")
+                        compiled.write("}\n")
+                    case "str":
+                        compiled.write(f"std::string {name} ({line[x+1:g]})\n")
+                        compiled.write("}\n")
+                    case "char":
+                        compiled.write(f"char {name} ({line[x+1:g]})\n")
+                        compiled.write("}\n")
+                    case _:
+                        raise SyntaxError ("No such function type")
+
+            elif "ENDFUNC" in line[0:8]:
+                compiled.write("}\n")
+            
+            elif "RETURN" in line[0:7]:
+                for x in range(len(line) - 1):
+                    if line[x] == ";":
+                        break
+                for a in range(len(line)-1):
+                    if line[a] == '[':
+                        break
+                
+                for b in range(len(line) - 1):
+                    if line[b] == "]":
+                        break
+                compiled.write(f"\treturn {line[a+1:b]};\n")
+
+            ########################### Calling a function ###########################
+            
+            
+            ######################### END OF FUNCTION SEGMANT #######################
 
             # Implimetation of End startement 
             elif "END" in line[:3]:
@@ -229,8 +378,10 @@ def main():
                 compiled.write("}\n")
                 compiled.write("// This Is the OutPut Code From The Lingwar Program")
             # else:
-            #     print(f"Syntax Error at line {x}")
-    # os.system(f" gcc {run} -o {run[:4]}")
-    # os.system(f"./{run[:4]}")
+            #     print(f"Syntax Error at line {x}"))
 if __name__ == '__main__':
     main()
+
+    # os.system(f" g++ {run} -o {run[:4]}")
+    # os.system(f"rm {run}")
+    # os.system(f"./{run[:4]}")

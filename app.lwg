@@ -1,4 +1,5 @@
 #ADD "I/O"
+FUNC INT name (INT name, int class)
 START
 WRITE "hello"
 INT num

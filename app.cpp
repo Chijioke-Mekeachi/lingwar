@@ -1,5 +1,5 @@
 #include<iostream>
-int main(){
+INT name ()int main(){
 	std::cout<<"hello";
 	int num;
 	std::cout<<"Enter a Number ?";
