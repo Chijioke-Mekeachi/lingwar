@@ -77,3 +77,12 @@ Greater Than            ||          >
 Less Than               ||          <
 Less Than oo Equalto    ||          <=
 Greater Than or Equalto ||          >=
+
+
+[FUNC]  the function key word
+Syntax : 
+FUNC [TYPE] NAME (parameters ....)
+statement
+RETURN [VARIBLE OR TEXT]
+CALLFUNC
+
